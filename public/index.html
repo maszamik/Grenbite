@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Pesanan</title>
+  <style>
+    /* Gaya untuk tabel */
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    /* Gaya untuk form */
+    #updateForm, #addForm {
+      display: none;
+      margin-top: 20px;
+    }
+
+    /* Gaya tombol */
+    .btn {
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Status Pesanan</h1>
+  
+  <!-- Tombol untuk menambah data baru -->
+  <button onclick="showAddForm()">Tambah Data</button>
+
+  <table id="statusPesananTable">
+    <thead>
+      <tr>
+        <th>ID Status</th>
+        <th>Nama Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data akan diisi di sini oleh script.js -->
+    </tbody>
+  </table>
+
+  <!-- Form Tambah Data -->
+  <div id="addForm">
+    <h2>Tambah Data Status Pesanan</h2>
+    <label for="addIdStatus">ID Status:</label>
+    <input type="number" id="addIdStatus" required />
+    <br/>
+    <label for="addNamaStatus">Nama Status:</label>
+    <input type="text" id="addNamaStatus" required />
+    <button onclick="submitAdd()">Tambah</button>
+    <button onclick="hideAddForm()">Batal</button>
+  </div>
+
+  <!-- Form Update -->
+  <div id="updateForm">
+    <h2>Update Status Pesanan</h2>
+    <input type="hidden" id="updateIdStatus" />
+    <label for="updateNamaStatus">Nama Status:</label>
+    <input type="text" id="updateNamaStatus" required />
+    <button onclick="submitUpdate()">Update</button>
+    <button onclick="hideUpdateForm()">Batal</button>
+  </div>
+
+  <!-- Link ke file JavaScript untuk menangani CRUD -->
+  <script src="script.js"></script>
+</body>
+</html>

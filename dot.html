@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Record</title>
+</head>
+<body>
+  <h2>Update Record</h2>
+  <form id="updateForm">
+    <label for="nrp">NRP (Record ID):</label>
+    <input type="text" id="nrp" name="nrp">
+    <label for="mhs_name">Name:</label>
+    <input type="text" id="mhs_name" name="mhs_name">
+    <label for="mhs_addr">Address:</label>
+    <input type="text" id="mhs_addr" name="mhs_addr">
+    <button type="submit">Update Record</button>
+  </form>
+  <div id="message"></div>
+
+  <script>
+    const updateForm = document.getElementById('updateForm');
+    const messageElement = document.getElementById('message');
+
+    updateForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nrp = document.getElementById('nrp').value;
+      const mhs_name = document.getElementById('mhs_name').value;
+      const mhs_addr = document.getElementById('mhs_addr').value;
+
+      // Replace with your Node.js service endpoint for updating a record
+      const url = `http://localhost:3000/students/${nrp}`;
+
+      const data = {
+        mhs_name,
+        mhs_addr
+      };
+
+      fetch(url, {
+        method: 'PUT', // Use 'POST' if you prefer or if your service uses POST for updates
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+          if (response.status === 200) {
+            messageElement.textContent = 'Record updated successfully.';
+          } else if (response.status === 404) {
+            messageElement.textContent = 'Record not found.';
+          } else {
+            messageElement.textContent = 'Failed to update the record.';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          messageElement.textContent = 'An error occurred while updating the record.';
+        });
+    });
+  </script>
+</body>
+</html>
